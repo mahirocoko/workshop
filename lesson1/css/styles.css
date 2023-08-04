@@ -1,0 +1,270 @@
+body {
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+}
+
+.sub-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.card {
+  box-shadow: 0rem 0.25rem 5rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+/* Transition */
+.transition .square {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  background-color: red;
+  transition: all 0.3s linear;
+  will-change: color, width;
+}
+
+.transition .square:hover {
+  width: 15rem;
+  height: 15rem;
+  background-color: blue;
+  transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.transition .square .circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  background-color: yellow;
+  transition: top 1s 0.5s ease-in-out, left 1s 0s ease-in-out,
+    transform 1s ease-in-out;
+}
+
+.transition .square:hover .circle {
+  top: 100%;
+  left: 100%;
+  transform: translateY(-100%) translateX(-100%);
+}
+
+.card-transition-wrapper {
+  position: relative;
+  perspective: 1200px;
+  height: 300px;
+  width: 250px;
+  margin-top: 2rem;
+}
+
+.card-transition-wrapper::before,
+.card-transition-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  z-index: 10;
+}
+
+.card-transition-wrapper::after {
+  width: 2px;
+  height: 100%;
+}
+
+.card-transition {
+  position: absolute;
+  border-radius: 1rem;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 400ms cubic-bezier(.23,.44,.29,.9);
+  background-color: black;
+}
+
+.card-transition::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 1s;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+.card-transition img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+.card-transition .text {
+  color: white;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 600;
+  transform: translateY(0rem) translateZ(2rem);
+  transition: all 1s;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.card-transition .text.text-1 {
+  transform: translateY(1rem) translateZ(2rem);
+  opacity: 0;
+}
+
+.card-transition .text.text-2 {
+  transform: translateZ(-2rem) rotateY(-180deg);
+}
+
+.card-transition.active::after {
+  opacity: 1;
+}
+
+.card-transition.active .text.text.text-1 {
+  opacity: 1;
+  transform: translateY(0) translateZ(2rem);
+  transition: all 1s 0.5s;
+}
+
+/* Animation */
+.animation .box {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.animation .box .circle {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 8rem;
+  background-color: red;
+
+  animation: play-circle 4s cubic-bezier(.23,.44,.29,.9);
+}
+
+.animation .box-2 .circle {
+  animation: play-circle 4s reverse cubic-bezier(.23,.44,.29,.9);
+}
+
+@keyframes play-circle {
+  0% {
+    top: 0;
+    left: 0;
+    background-color: red;
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    top: 0;
+    left: 100%;
+    background-color: blue;
+    transform: translateX(-100%) translateY(0);
+    border-radius: 0;
+  }
+
+  50% {
+    top: 100%;
+    left: 100%;
+    background-color: yellow;
+    transform: translateX(-100%) translateY(-100%);
+    border-radius: 0;
+  }
+  
+  75% {
+    top: 100%;
+    left: 0;
+    background-color: orange;
+    transform: translateX(0) translateY(-100%);
+    border-radius: 0;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    background-color: red;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.animation .box.sky-box {
+  background-color: skyblue;
+  overflow: hidden;
+}
+
+.animation .box.sky-box .cloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 9rem;
+  background-image: url(/images/cloud.png);
+  background-size: contain;
+  animation: clouding 20s infinite linear both;
+}
+
+.animation .box.sky-box .cloud:nth-child(2) {
+  top: 5rem;
+  animation-delay: 0.5s;
+  animation-duration: 8s;
+}
+.animation .box.sky-box .cloud:nth-child(3) {
+  top: 3rem;
+  animation-delay: 1s;
+  animation-duration: 10s;
+}
+.animation .box.sky-box .cloud:nth-child(4) {
+  top: 1rem;
+  animation-delay: 1.5s;
+  animation-duration: 15s;
+}
+.animation .box.sky-box .cloud:nth-child(5) {
+  top: 7rem;
+  animation-delay: 2s;
+}
+
+@keyframes clouding {
+  0% {
+    left: 100%;
+    transform: translateX(0);
+  }
+  59% {
+   opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  66% {
+   opacity: 0;
+  }
+  67% {
+    opacity: 1;
+  }
+  100% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+}
