@@ -1,13 +1,3 @@
-// Helpers
-const wrapElements = (elems, wrapType, wrapClass) => {
-  elems.forEach(char => {
-    const wrapEl = document.createElement(wrapType)
-    wrapEl.classList = wrapClass
-    char.parentNode.appendChild(wrapEl)
-    wrapEl.appendChild(char)
-  })
-}
-
 // Slideshow class
 class Slider {
   #current = 0
